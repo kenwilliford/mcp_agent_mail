@@ -2390,7 +2390,7 @@ def _detect_agent_name_mistake(value: str) -> tuple[str, str] | None:
             f"Agent names must be adjective+noun combinations like 'BlueLake' or 'GreenCastle'. "
             f"When you called register_agent, the system likely auto-generated a valid name for you. "
             f"To find your actual agent name, check the response from register_agent or use "
-            f"resource://agents/{{project_key}} to list all registered agents in this project."
+            f"resource://agents/{{project_slug}} to list all registered agents (use the slug, not the path)."
         )
     return None
 
@@ -4638,7 +4638,8 @@ def build_mcp_server() -> FastMCP:
 
         Discovery
         ---------
-        To discover available agent names, use: resource://agents/{project_key}
+        To discover available agent names, use: resource://agents/{project_slug}
+        Use the project **slug** (e.g., `home-myuser-code-backend`), not an absolute path.
         Agent names are NOT the same as program names or user names.
 
         Parameters
@@ -4646,7 +4647,7 @@ def build_mcp_server() -> FastMCP:
         project_key : str
             Project slug or human key.
         agent_name : str
-            Agent name to look up (use resource://agents/{project_key} to discover names).
+            Agent name to look up (use resource://agents/{project_slug} to discover names).
         include_recent_commits : bool
             If true, include latest commits touching the project archive authored by the configured git author.
         commit_limit : int
@@ -4789,7 +4790,8 @@ def build_mcp_server() -> FastMCP:
 
         Discovery
         ---------
-        To discover available agent names for recipients, use: resource://agents/{project_key}
+        To discover available agent names for recipients, use: resource://agents/{project_slug}
+        Use the project **slug** (e.g., `home-myuser-code-backend`), not an absolute path.
         Agent names are NOT the same as program names or user names.
 
         What this does
@@ -4959,7 +4961,7 @@ def build_mcp_server() -> FastMCP:
                 f"[note] You ({sender_name}) are sending a message to yourself. "
                 f"This is allowed but usually not intended. To communicate with other agents, "
                 f"use their agent names (e.g., 'BlueLake'). To discover agents, "
-                f"use resource://agents/{project_key}."
+                f"use resource://agents/{{project_slug}} (use the slug, not an absolute path)."
             )
 
         # Subject length warning: warn if subject is too long (will be truncated in DB)
@@ -5951,7 +5953,8 @@ def build_mcp_server() -> FastMCP:
 
         Discovery
         ---------
-        To discover available agent names, use: resource://agents/{project_key}
+        To discover available agent names, use: resource://agents/{project_slug}
+        Use the project **slug** (e.g., `home-myuser-code-backend`), not an absolute path.
         Agent names are NOT the same as program names or user names.
 
         Parameters
@@ -5961,7 +5964,7 @@ def build_mcp_server() -> FastMCP:
         from_agent : str
             Your agent name (must be registered in the project).
         to_agent : str
-            Target agent name (use resource://agents/{project_key} to discover names).
+            Target agent name (use resource://agents/{project_slug} to discover names).
         to_project : Optional[str]
             Target project if different from your project (cross-project coordination).
         reason : str
