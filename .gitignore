@@ -262,3 +262,7 @@ rustc-ice-*.txt
 *.snap.new
 sweep_*.png
 test_screenshot.png
+
+# MCP configuration (contains bearer token)
+.mcp.json
+.agent-mail.yaml
